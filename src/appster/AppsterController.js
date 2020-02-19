@@ -1,4 +1,7 @@
 import {AppsterCallback, AppsterGUIId, AppsterHTML} from './AppsterConstants.js'
+import GoLogoLoController from '../gologolo/GoLogoLoController.js';
+import GoLogoLoLogo from '../gologolo/GoLogoLoLogo.js';
+import GoLogoLoView from '../gologolo/GoLogoLoView.js';
 
 export default class AppsterController {
     constructor() {
@@ -86,14 +89,65 @@ export default class AppsterController {
      * This function is called when the user requests to create
      * new work.
      */
-    processCreateNewWork() {
+    /*
+    processCreateNewWork = () => {
         console.log("processCreateNewWork");
 
         // PROMPT FOR THE NAME OF THE NEW LIST
+
+        var text = document.getElementById("appster_text_input_modal");
+        text.style.opacity = "1.0";
+        text.style.visibility = "visible";
+        var text = document.getElementById("appster_text_input_modal_frame");
+        text.style.opacity = "1.0";
         
+        console.log(this);
+        console.log(this.model);
+        var cancelButton = document.getElementById("appster_text_input_modal_cancel_button");
+        cancelButton.addEventListener("click", this.cancelButton);
+
+        var enterButton = document.getElementById("appster_text_input_modal_enter_button");
+        enterButton.addEventListener("click", this.nameCheck);
+
+        console.log(this.model);
         // MAKE A BRAND NEW LIST
+        
         this.model.goList();
     }
+    cancelButton() {
+        var text = document.getElementById("appster_text_input_modal");
+        text.style.opacity = "0.0";
+        text.style.visibility = "hidden";
+        var text = document.getElementById("appster_text_input_modal_frame");
+        text.style.opacity = "0.0";
+        var errorReset = document.getElementById("appster_text_input_modal_section").childNodes[0];
+        errorReset.innerHTML = "<strong>Enter a name for your logo: </strong>";
+        var textField = document.getElementById("appster_text_input_modal_textfield");
+        textField.value = "";
+    }
+
+    nameCheck= () => {
+        var nameText = document.getElementById("appster_text_input_modal_textfield").value;
+        var errorText = document.getElementById("appster_text_input_modal_section").childNodes[0];
+
+        if(nameText == null || nameText.length <= 1) {
+            errorText.innerHTML = "Your logo name must be 1 character or more.";
+        }
+        else {
+            
+        }
+
+        var x = this.model.recentWork;
+        for(var i = 0; i < x.length; i++) {
+            if(nameText == x[i].getName()) {
+                errorText.innerHTML = "This logo name already exists. Please choose a different one."
+                console.log("error");
+                break;
+            }
+        }
+
+    }
+    */
 
     /**
      * This function responds to when the user clicks on a link
