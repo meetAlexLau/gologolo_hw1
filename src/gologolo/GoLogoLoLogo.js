@@ -24,7 +24,6 @@ export default class GoLogoLoLogo extends AppWork {
 
     setFontSize(initFontSize) {
         this.fontSize = initFontSize;
-        //document.getElementById("gologolo_text").style.fontSize = this.fontSize + "px";
     }
 
     getFontSize() {

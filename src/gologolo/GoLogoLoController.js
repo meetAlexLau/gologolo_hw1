@@ -43,7 +43,7 @@ export default class GoLogoLoController
     sizeSliderFunc = () => {
         console.log("beans");
         var goLogoLoText = document.getElementById("gologolo_text");
-        //goLogoLoText.style.fontSize = document.getElementById("gologolo_font_size_slider").value + "px";
+        goLogoLoText.style.fontSize = document.getElementById("gologolo_font_size_slider").value + "px";
         this.model.currentWork.setFontSize(parseInt(document.getElementById("gologolo_font_size_slider").value));
         console.log(document.getElementById("gologolo_font_size_slider").value);
     }
