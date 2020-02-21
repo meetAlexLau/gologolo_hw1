@@ -543,7 +543,12 @@ export default class AppsterView {
        //change enter button id so it becomes gologolo
        document.getElementById("appster_text_input_modal_enter_button").removeEventListener("click", this.controller.nameChecker);
        document.getElementById("appster_text_input_modal_enter_button").id = "GoLogoLo_text_input_modal_enter_button";
-       
+
+       //in case create new work was never clicked
+       var cancelButton = document.getElementById("appster_text_input_modal_cancel_button");
+       cancelButton.addEventListener("click", this.controller.cancelButton);       
+
+       //edit enter button to gologolo
        var logoEnter = document.getElementById("GoLogoLo_text_input_modal_enter_button");
        logoEnter.addEventListener("click", this.updateText); //gologolo method 
    }
@@ -554,6 +559,12 @@ export default class AppsterView {
 
    idResetEnterCancel() {
        //reset enter and cancel to appster
-       document.getElementById("GoLogoLo_text_input_modal_enter_button").id = "appster_text_input_modal_enter_button";
+       var enter = document.getElementById("GoLogoLo_text_input_modal_enter_button");
+       if(enter.id == "GoLogoLo_text_input_modal_enter_button") {
+           enter.id = "appster_text_input_modal_enter_button";
+       }
+       else {
+        enter.id = "GoLogoLo_text_input_modal_enter_button";
+       }
    }
 }
