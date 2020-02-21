@@ -143,7 +143,8 @@ export const AppsterHTML = {
   * and scale well.
   */
  export const AppsterSymbols = {
-    DELETE: "&#128465;"     // TRASH SYMBOL
+    DELETE: "&#128465;" ,    // TRASH SYMBOL
+    EDIT: "Edit Text ✎"
 };
 
 export const AppsterText = {

@@ -59,10 +59,13 @@ export default class GoLogoLoView extends AppsterView {
     }
 
     loadWork(work) {
+        let editText = document.getElementById(GoLogoLoGUIId.GOLOGOLO_EDIT_TEXT_BUTTON);
+        editText.onclick = this.editTextLogo;
         let textDiv = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT);
         textDiv.innerHTML = work.getText();
         let fontSizeSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_FONT_SIZE_SLIDER);
         fontSizeSlider.value = work.getFontSize();
+        fontSizeSlider.oninput = this.
         let textColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_COLOR_PICKER);
         textColorPicker.value = work.getTextColor();
         let backgroundColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BACKGROUND_COLOR_PICKER);
@@ -101,5 +104,18 @@ export default class GoLogoLoView extends AppsterView {
     appendLetter(listItemId, letterToAppend) {
         let textList = document.getElementById(listItemId);
         textList.innerHTML += textList.innerHTML + letterToAppend;
+    }
+    //edit text button
+    editTextLogo=()=> {
+        var newText = this.editTextAppster();
+        console.log(newText);
+    }
+    //updates text from modal to logo
+    updateText = () => {
+        var newText = this.obtainTextField();
+        var logoText = document.getElementById("gologolo_text");
+        logoText.innerHTML = newText;
+        this.controller.cancelButton();
+        this.idResetEnterCancel();
     }
 }

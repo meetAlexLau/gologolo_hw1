@@ -523,4 +523,37 @@ export default class AppsterView {
        let dialog = document.getElementById(AppsterGUIId.MODAL_YES_NO_DIALOG);
        dialog.classList.add(AppsterGUIClass.IS_VISIBLE);
    }
+
+   editTextAppster= ()=> {
+       //make input modal appear
+       var modalSection = document.getElementById("appster_text_input_modal");
+       modalSection.style.visibility = "visible";
+       modalSection.style.opacity = "1.0";
+       var text = document.getElementById("appster_text_input_modal_frame");
+       text.style.opacity = "1.0";
+       //clear text field
+       document.getElementById("appster_text_input_modal_textfield").value = "";
+       //title
+       var headerText = document.getElementById("appster_text_input_modal_section").childNodes[0];
+       headerText.innerHTML = "Enter new text for your logo:";
+       //remove footer
+       var footer = document.getElementById("appster_text_input_modal_frame").childNodes[2];
+       footer.innerHTML = " ";
+
+       //change enter button id so it becomes gologolo
+       document.getElementById("appster_text_input_modal_enter_button").id = "GoLogoLo_text_input_modal_enter_button";
+       
+       var logoEnter = document.getElementById("GoLogoLo_text_input_modal_enter_button");
+       logoEnter.addEventListener("click", this.updateText); //gologolo method
+       
+   }
+
+   obtainTextField() {
+       return document.getElementById("appster_text_input_modal_textfield").value;
+   }
+
+   idResetEnterCancel() {
+       //reset enter and cancel to appster
+       document.getElementById("GoLogoLo_text_input_modal_enter_button").id = "appster_text_input_modal_enter_button";
+   }
 }

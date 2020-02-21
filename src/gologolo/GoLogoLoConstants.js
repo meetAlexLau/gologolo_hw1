@@ -15,6 +15,10 @@ export const GoLogoLoGUIClass = {
     GOLOGOLO_CONTROL_PROMPT: 'gologolo_control_prompt'
 };
 
+export const GoLogoLoCallback = {
+    GOLOGOLO_PROCESS_EDIT_TEXT: "processEditText"
+}
+
 export const GoLogoLoGUIId = {
     GOLOGOLO_TOOLBAR: "gologolo_toolbar",
     GOLOGOLO_EDIT_TEXT_BUTTON: "gologolo_edit_text_button",

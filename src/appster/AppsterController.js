@@ -77,6 +77,7 @@ export default class AppsterController {
      */
     processGoHome = () => {
         console.log("processGoHome");
+        this.model.currentWork = null;
         this.model.goHome();
     }
 
@@ -85,69 +86,6 @@ export default class AppsterController {
         this.model.goEdit(workToEdit);
     }
 
-    /**
-     * This function is called when the user requests to create
-     * new work.
-     */
-    /*
-    processCreateNewWork = () => {
-        console.log("processCreateNewWork");
-
-        // PROMPT FOR THE NAME OF THE NEW LIST
-
-        var text = document.getElementById("appster_text_input_modal");
-        text.style.opacity = "1.0";
-        text.style.visibility = "visible";
-        var text = document.getElementById("appster_text_input_modal_frame");
-        text.style.opacity = "1.0";
-        
-        console.log(this);
-        console.log(this.model);
-        var cancelButton = document.getElementById("appster_text_input_modal_cancel_button");
-        cancelButton.addEventListener("click", this.cancelButton);
-
-        var enterButton = document.getElementById("appster_text_input_modal_enter_button");
-        enterButton.addEventListener("click", this.nameCheck);
-
-        console.log(this.model);
-        // MAKE A BRAND NEW LIST
-        
-        this.model.goList();
-    }
-    cancelButton() {
-        var text = document.getElementById("appster_text_input_modal");
-        text.style.opacity = "0.0";
-        text.style.visibility = "hidden";
-        var text = document.getElementById("appster_text_input_modal_frame");
-        text.style.opacity = "0.0";
-        var errorReset = document.getElementById("appster_text_input_modal_section").childNodes[0];
-        errorReset.innerHTML = "<strong>Enter a name for your logo: </strong>";
-        var textField = document.getElementById("appster_text_input_modal_textfield");
-        textField.value = "";
-    }
-
-    nameCheck= () => {
-        var nameText = document.getElementById("appster_text_input_modal_textfield").value;
-        var errorText = document.getElementById("appster_text_input_modal_section").childNodes[0];
-
-        if(nameText == null || nameText.length <= 1) {
-            errorText.innerHTML = "Your logo name must be 1 character or more.";
-        }
-        else {
-            
-        }
-
-        var x = this.model.recentWork;
-        for(var i = 0; i < x.length; i++) {
-            if(nameText == x[i].getName()) {
-                errorText.innerHTML = "This logo name already exists. Please choose a different one."
-                console.log("error");
-                break;
-            }
-        }
-
-    }
-    */
 
     /**
      * This function responds to when the user clicks on a link
@@ -158,15 +96,75 @@ export default class AppsterController {
      */
     processEditWork = (event) => {
         console.log("processEditWork");
-
+        console.log(this.model.currentWork);
         // GET THE WORK THAT THE USER WANTS TO LOAD
         let clickedElement = event.target;
         let workName = clickedElement.workId;
-        console.log(workName + " clicked");
+        this.model.currentWork = workName;
 
+        console.log(workName + " clicked");
+        console.log(this.model.currentWork);
         // START EDITING THE SELECTED WORK
         this.model.editWork(workName);
     }
+
+    createNewWork = () => {
+        console.log("processCreateNewWork");
+        console.log(this);
+        // PROMPT FOR THE NAME OF THE NEW LIST
+        
+        //reset textfield and error text
+        var errorReset = document.getElementById("appster_text_input_modal_section").childNodes[0];
+        errorReset.innerHTML = "<strong>Enter a name for your logo: </strong>";
+        var textField = document.getElementById("appster_text_input_modal_textfield");
+        textField.value = "";
+        //make text input modal appear
+        var text = document.getElementById("appster_text_input_modal");
+        text.style.opacity = "1.0";
+        text.style.visibility = "visible";
+        var text = document.getElementById("appster_text_input_modal_frame");
+        text.style.opacity = "1.0";
+        
+        //cancel button listener
+        var cancelButton = document.getElementById("appster_text_input_modal_cancel_button");
+        cancelButton.addEventListener("click", this.cancelButton);
+
+
+        //enter button listener
+        var enterButton = document.getElementById("appster_text_input_modal_enter_button");
+        enterButton.addEventListener("click", this.nameChecker);
+
+        
+    }
+    cancelButton() {
+        var text = document.getElementById("appster_text_input_modal");
+        text.style.opacity = "0.0";
+        text.style.visibility = "hidden";
+        var text = document.getElementById("appster_text_input_modal_frame");
+        text.style.opacity = "0.0";
+    }
+
+    nameCheck = () =>{
+        var nameText = document.getElementById("appster_text_input_modal_textfield").value;
+        var errorText = document.getElementById("appster_text_input_modal_section").childNodes[0];
+
+        var x = this.model.recentWork;
+        for(var i = 0; i < x.length; i++) {
+            if(nameText == x[i].getName()) {
+                errorText.innerHTML = "This logo name already exists. Please choose a different one."
+                console.log("same name error");
+                return;
+            }
+        }
+
+        if(nameText == null || nameText.length <= 1) {
+            errorText.innerHTML = "Your logo name must be 1 character or more.";
+            console.log("name not long enough")
+        }
+        else {
+            return nameText;
+        }
+    } 
 
     /**
      * This function responds to when the user clicks the No
@@ -207,8 +205,69 @@ export default class AppsterController {
      * button, i.e. the delete button, in order to delete the
      * list being edited.
      */
-    processDeleteWork() {
+    processDeleteWork = () =>{
         // VERIFY VIA A DIALOG BOX
-        window.todo.model.view.showDialog();
+        var deleteBox = document.getElementById("appster_yes_no_modal");
+        deleteBox.style.visibility = "visible";
+        deleteBox.style.opacity = "1.0";
+        var deleteBox2 = document.getElementById("appster_yes_no_modal_frame");
+        deleteBox2.style.visibility = "visible";
+        deleteBox2.style.opacity = "1.0";
+        var deleteBox3 = document.getElementById("appster_yes_no_modal_section");
+        deleteBox3.style.visibility = "visible";
+        deleteBox3.style.opacity = "1.0";
+
+        var noButton = document.getElementById("appster_yes_no_modal_no_button");
+        noButton.onclick = function() {
+            var deleteBox = document.getElementById("appster_yes_no_modal");
+            deleteBox.style.visibility = "hidden";
+            deleteBox.style.opacity = "0.0";
+            var deleteBox2 = document.getElementById("appster_yes_no_modal_frame");
+            deleteBox2.style.visibility = "hidden";
+            deleteBox2.style.opacity = "0.0";
+            var deleteBox3 = document.getElementById("appster_yes_no_modal_section");
+            deleteBox3.style.visibility = "hidden";
+            deleteBox3.style.opacity = "0.0";
+        }
+        console.log(this);
+        var yesButton = document.getElementById("appster_yes_no_modal_yes_button");
+        yesButton.addEventListener("click", this.yesButtonFunction);
+
+
+        //window.todo.model.view.showDialog();
+        console.log("delete");
+
+    }
+    yesButtonFunction = () => {
+        console.log(this);
+        console.log(this.model.currentWork);
+        let current = this.model.currentWork;
+        let index = -1;
+        for(var i =0; i< this.model.recentWork.length; i++) {
+            console.log(this.model.recentWork[i].name);
+            if(this.model.recentWork[i].name == current) {
+                index = i;
+                break;
+            }
+        }
+
+        if(index >= 0) {
+            this.model.recentWork.splice(index, 1);
+        }
+        
+        this.model.view.reloadRecentWorkLinks(this.model.recentWork);
+        console.log(this);
+        console.log(this.model.recentWork);
+
+        var deleteBox = document.getElementById("appster_yes_no_modal");
+        deleteBox.style.visibility = "hidden";
+        deleteBox.style.opacity = "0.0";
+        var deleteBox2 = document.getElementById("appster_yes_no_modal_frame");
+        deleteBox2.style.visibility = "hidden";
+        deleteBox2.style.opacity = "0.0";
+        var deleteBox3 = document.getElementById("appster_yes_no_modal_section");
+        deleteBox3.style.visibility = "hidden";
+        deleteBox3.style.opacity = "0.0";
+        this.processGoHome();
     }
 }
