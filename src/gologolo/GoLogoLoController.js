@@ -9,9 +9,6 @@ export default class GoLogoLoController
         super();
     }
 
-    registerGoLogoLoEventHandlers() {
-        this.registerEventHandler(GoLogoLoGUIId.GOLOGOLO_EDIT_TEXT_BUTTON,AppsterHTML.CLICK, this[GoLogoLoCallback.GOLOGOLO_EDIT_TEXT_BUTTON]);
-    }
 
     processEditText() {
         this.model.updateText();
@@ -30,10 +27,25 @@ export default class GoLogoLoController
         var logoName =this.nameCheck();
         if(logoName != (null || undefined)) {
             var newLogo = new GoLogoLoLogo(logoName);
-            this.model.appendWork(newLogo);
+            this.model.prependWork(newLogo);
+            this.model.editWork(newLogo.name);
             this.cancelButton();
             console.log(this);
+
         }
+    }
+
+    //edit text button
+    editTextLogo = () => {
+        this.model.view.editTextAppster();
+    }
+
+    sizeSliderFunc = () => {
+        console.log("beans");
+        var goLogoLoText = document.getElementById("gologolo_text");
+        goLogoLoText.style.fontSize = document.getElementById("gologolo_font_size_slider").value + "px";
+        this.model.currentWork.setFontSize(parseInt(document.getElementById("gologolo_font_size_slider").value));
+        console.log(document.getElementById("gologolo_font_size_slider").value);
     }
 
 }

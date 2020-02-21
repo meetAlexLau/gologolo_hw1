@@ -541,11 +541,11 @@ export default class AppsterView {
        footer.innerHTML = " ";
 
        //change enter button id so it becomes gologolo
+       document.getElementById("appster_text_input_modal_enter_button").removeEventListener("click", this.controller.nameChecker);
        document.getElementById("appster_text_input_modal_enter_button").id = "GoLogoLo_text_input_modal_enter_button";
        
        var logoEnter = document.getElementById("GoLogoLo_text_input_modal_enter_button");
-       logoEnter.addEventListener("click", this.updateText); //gologolo method
-       
+       logoEnter.addEventListener("click", this.updateText); //gologolo method 
    }
 
    obtainTextField() {

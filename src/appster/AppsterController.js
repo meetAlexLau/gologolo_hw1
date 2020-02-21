@@ -100,10 +100,11 @@ export default class AppsterController {
         // GET THE WORK THAT THE USER WANTS TO LOAD
         let clickedElement = event.target;
         let workName = clickedElement.workId;
-        this.model.currentWork = workName;
+        //this.model.currentWork = workName;
 
         console.log(workName + " clicked");
         console.log(this.model.currentWork);
+        console.log(this);
         // START EDITING THE SELECTED WORK
         this.model.editWork(workName);
     }
@@ -240,12 +241,11 @@ export default class AppsterController {
     }
     yesButtonFunction = () => {
         console.log(this);
-        console.log(this.model.currentWork);
         let current = this.model.currentWork;
         let index = -1;
         for(var i =0; i< this.model.recentWork.length; i++) {
             console.log(this.model.recentWork[i].name);
-            if(this.model.recentWork[i].name == current) {
+            if(this.model.recentWork[i].name == current.name) {
                 index = i;
                 break;
             }

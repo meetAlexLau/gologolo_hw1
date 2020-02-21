@@ -60,12 +60,12 @@ export default class GoLogoLoView extends AppsterView {
 
     loadWork(work) {
         let editText = document.getElementById(GoLogoLoGUIId.GOLOGOLO_EDIT_TEXT_BUTTON);
-        editText.onclick = this.editTextLogo;
+        editText.onclick = this.goToEditTextLogo;
         let textDiv = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT);
         textDiv.innerHTML = work.getText();
         let fontSizeSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_FONT_SIZE_SLIDER);
         fontSizeSlider.value = work.getFontSize();
-        fontSizeSlider.oninput = this.sizeSliderFunc;
+        fontSizeSlider.oninput = this.goToSizeSliderFunc;
         let textColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_COLOR_PICKER);
         textColorPicker.value = work.getTextColor();
         let backgroundColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BACKGROUND_COLOR_PICKER);
@@ -105,24 +105,24 @@ export default class GoLogoLoView extends AppsterView {
         let textList = document.getElementById(listItemId);
         textList.innerHTML += textList.innerHTML + letterToAppend;
     }
-    //edit text button
-    editTextLogo=()=> {
-        var newText = this.editTextAppster();
-        console.log(newText);
+
+    goToEditTextLogo= () => {
+        this.controller.editTextLogo();
+    }
+
+    goToSizeSliderFunc = () => {
+        this.controller.sizeSliderFunc();
     }
     //updates text from modal to logo
     updateText = () => {
+        console.log(this);
         var newText = this.obtainTextField();
         var logoText = document.getElementById("gologolo_text");
+        this.controller.model.currentWork.setText(newText);
         logoText.innerHTML = newText;
+        console.log(this);
         this.controller.cancelButton();
         this.idResetEnterCancel();
     }
 
-    sizeSliderFunc = () => {
-        console.log("beans");
-        var goLogoLoText = document.getElementById("gologolo_text");
-        goLogoLoText.style.fontSize = document.getElementById("gologolo_font_size_slider").value + "px";
-        console.log(document.getElementById("gologolo_font_size_slider").value);
-    }
 }

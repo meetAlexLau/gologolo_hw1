@@ -32,6 +32,7 @@ export default class AppsterModel {
             // SET IT AS THE WORK WE ARE EDITING
             this.workToEdit = work;
             this.moveWorkToTop(this.workToEdit);
+            this.currentWork = work;
 
             // LOAD DATA INTO THE UI
             this.view.loadWork(this.workToEdit); 
