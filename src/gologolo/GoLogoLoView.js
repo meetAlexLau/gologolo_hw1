@@ -65,7 +65,7 @@ export default class GoLogoLoView extends AppsterView {
         textDiv.innerHTML = work.getText();
         let fontSizeSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_FONT_SIZE_SLIDER);
         fontSizeSlider.value = work.getFontSize();
-        fontSizeSlider.oninput = this.
+        fontSizeSlider.oninput = this.sizeSliderFunc;
         let textColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_COLOR_PICKER);
         textColorPicker.value = work.getTextColor();
         let backgroundColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BACKGROUND_COLOR_PICKER);
@@ -117,5 +117,12 @@ export default class GoLogoLoView extends AppsterView {
         logoText.innerHTML = newText;
         this.controller.cancelButton();
         this.idResetEnterCancel();
+    }
+
+    sizeSliderFunc = () => {
+        console.log("beans");
+        var goLogoLoText = document.getElementById("gologolo_text");
+        goLogoLoText.style.fontSize = document.getElementById("gologolo_font_size_slider").value + "px";
+        console.log(document.getElementById("gologolo_font_size_slider").value);
     }
 }
