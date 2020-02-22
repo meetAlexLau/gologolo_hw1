@@ -567,4 +567,9 @@ export default class AppsterView {
         enter.id = "GoLogoLo_text_input_modal_enter_button";
        }
    }
+
+   logoNameInvalid() {
+    var errorText = document.getElementById("appster_text_input_modal_section").childNodes[0];
+    errorText.innerHTML = "Your logo text must be 1 character or more.";
+   }
 }

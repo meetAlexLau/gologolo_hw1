@@ -31,7 +31,6 @@ export default class GoLogoLoController
             this.model.editWork(newLogo.name);
             this.cancelButton();
             console.log(this);
-
         }
     }
 

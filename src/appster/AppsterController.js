@@ -126,6 +126,9 @@ export default class AppsterController {
         var text = document.getElementById("appster_text_input_modal_frame");
         text.style.opacity = "1.0";
         
+        var footer = document.getElementById("appster_text_input_modal_frame").childNodes[2];
+        footer.innerHTML = "Creating New Logo";
+
         //cancel button listener
         var cancelButton = document.getElementById("appster_text_input_modal_cancel_button");
         cancelButton.addEventListener("click", this.cancelButton);
@@ -159,7 +162,7 @@ export default class AppsterController {
             }
         }
 
-        if(nameText == null || nameText.length <= 1) {
+        if(nameText == null || nameText.trim().length <= 1) {
             errorText.innerHTML = "Your logo name must be 1 character or more.";
             console.log("name not long enough")
         }

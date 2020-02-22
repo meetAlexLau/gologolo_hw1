@@ -157,12 +157,17 @@ export default class GoLogoLoView extends AppsterView {
     updateText = () => {
         console.log(this);
         var newText = this.obtainTextField();
-        var logoText = document.getElementById("gologolo_text");
-        this.controller.model.currentWork.setText(newText);
-        logoText.innerHTML = newText;
-        console.log(this);
-        this.controller.cancelButton();
-        this.idResetEnterCancel();
+        if(newText == (null || undefined) || (newText.trim().length <=1)) {
+            this.logoNameInvalid();
+        }
+        else {
+            var logoText = document.getElementById("gologolo_text");
+            this.controller.model.currentWork.setText(newText);
+            logoText.innerHTML = newText;
+            console.log(this);
+            this.controller.cancelButton();
+            this.idResetEnterCancel();
+        }
     }
 
 }
