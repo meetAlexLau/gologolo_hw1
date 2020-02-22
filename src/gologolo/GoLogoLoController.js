@@ -64,4 +64,20 @@ export default class GoLogoLoController
         goLogoLoText.style.backgroundColor = newColor;
         this.model.currentWork.setBackgroundColor(newColor); 
     }
+
+    borderColorChange = () => {
+        var goLogoLoText = document.getElementById("gologolo_text");
+        var newColor = document.getElementById("gologolo_border_color_picker").value;
+        goLogoLoText.style.borderColor = newColor;
+        this.model.currentWork.setBorderColor(newColor);
+    }
+
+    borderRadiusSlider = () => {
+        var goLogoLoText = document.getElementById("gologolo_text");
+        var newRadius = document.getElementById("gologolo_border_radius_slider").value;
+        goLogoLoText.style.borderRadius = newRadius + "px";
+        this.model.currentWork.setBorderRadius(newRadius);
+    }
+
+    
 }
