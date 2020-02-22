@@ -89,6 +89,7 @@ export default class GoLogoLoController
         var newPadding = document.getElementById("gologolo_padding_slider").value;
         goLogoLoText.style.padding = newPadding + "px";
         this.model.currentWork.setPadding(newPadding);
+        console.log(newPadding);
     }
     
     marginChange = () => {

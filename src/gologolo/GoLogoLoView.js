@@ -80,7 +80,7 @@ export default class GoLogoLoView extends AppsterView {
         borderRadiusSlider.value = work.getBorderRadius();
         borderRadiusSlider.oninput = this.goToBorderRadiusSlider;
         let borderThicknessSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BORDER_THICKNESS_SLIDER);
-        borderThicknessSlider.value = work.setBorderThickness();
+        borderThicknessSlider.value = work.getBorderThickness();
         borderThicknessSlider.oninput = this.goToBorderThicknessChange;
         let paddingSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_PADDING_SLIDER);
         paddingSlider.value = work.getPadding();
@@ -101,6 +101,7 @@ export default class GoLogoLoView extends AppsterView {
         textDiv.style.borderRadius = work.getBorderRadius() +"px";
         textDiv.style.borderWidth = work.getBorderThickness() + "px";
         textDiv.style.padding = work.getPadding() + "px";
+        textDiv.style.margin = work.getMargin() + "px";
     }
 
     addListItem(initText) {
