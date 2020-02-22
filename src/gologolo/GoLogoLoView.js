@@ -80,11 +80,14 @@ export default class GoLogoLoView extends AppsterView {
         borderRadiusSlider.value = work.getBorderRadius();
         borderRadiusSlider.oninput = this.goToBorderRadiusSlider;
         let borderThicknessSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BORDER_THICKNESS_SLIDER);
-        borderThicknessSlider.value = work.getBorderThickness();
+        borderThicknessSlider.value = work.setBorderThickness();
+        borderThicknessSlider.oninput = this.goToBorderThicknessChange;
         let paddingSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_PADDING_SLIDER);
         paddingSlider.value = work.getPadding();
+        paddingSlider.oninput = this.goToPaddingChange;
         let marginSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER);
         marginSlider.value = work.getMargin();
+        document.getElementById("gologolo_text").style.borderStyle = "solid";
         this.loadWorkStyle(work);
     }
 
@@ -95,7 +98,7 @@ export default class GoLogoLoView extends AppsterView {
         textDiv.style.backgroundColor = work.getBackgroundColor();
         textDiv.style.borderColor = work.getBorderColor();
         textDiv.style.borderRadius = work.getBorderRadius() +"px";
-        textDiv.style.borderWidth = work.getBorderThickness();
+        textDiv.style.borderWidth = work.getBorderThickness() + "px";
     }
 
     addListItem(initText) {
@@ -136,6 +139,13 @@ export default class GoLogoLoView extends AppsterView {
         this.controller.borderRadiusSlider();
     }
 
+    goToBorderThicknessChange = () => {
+        this.controller.borderThicknessChange();
+    }
+
+    goToPaddingChange = () => {
+        this.controller.paddingChange();
+    }
     //updates text from modal to logo
     updateText = () => {
         console.log(this);

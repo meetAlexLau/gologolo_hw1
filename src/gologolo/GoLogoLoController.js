@@ -41,7 +41,6 @@ export default class GoLogoLoController
     }
 
     sizeSliderFunc = () => {
-        console.log("beans");
         var goLogoLoText = document.getElementById("gologolo_text");
         var newSize = document.getElementById("gologolo_font_size_slider").value;
         goLogoLoText.style.fontSize = newSize + "px";
@@ -79,5 +78,11 @@ export default class GoLogoLoController
         this.model.currentWork.setBorderRadius(newRadius);
     }
 
-    
+    borderThicknessChange = () => {
+        var goLogoLoText = document.getElementById("gologolo_text");
+        var newThickness = document.getElementById("gologolo_border_thickness_slider").value;
+        goLogoLoText.style.borderWidth = newThickness + "px";
+        this.model.currentWork.setBorderThickness(newThickness);
+    }
+
 }

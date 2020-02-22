@@ -107,6 +107,7 @@ export default class AppsterController {
         console.log(this);
         // START EDITING THE SELECTED WORK
         this.model.editWork(workName);
+        
     }
 
     createNewWork = () => {
