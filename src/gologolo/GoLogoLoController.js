@@ -84,5 +84,10 @@ export default class GoLogoLoController
         goLogoLoText.style.borderWidth = newThickness + "px";
         this.model.currentWork.setBorderThickness(newThickness);
     }
-
+    paddingChange = () => {
+        var goLogoLoText = document.getElementById("gologolo_text");
+        var newPadding = document.getElementById("gologolo_padding_slider").value;
+        goLogoLoText.style.padding = newPadding + "px";
+        this.model.currentWork.setPadding(newPadding);
+    }
 }
