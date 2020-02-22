@@ -87,6 +87,7 @@ export default class GoLogoLoView extends AppsterView {
         paddingSlider.oninput = this.goToPaddingChange;
         let marginSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_MARGIN_SLIDER);
         marginSlider.value = work.getMargin();
+        marginSlider.oninput = this.goToMarginChange;
         document.getElementById("gologolo_text").style.borderStyle = "solid";
         this.loadWorkStyle(work);
     }
@@ -146,6 +147,10 @@ export default class GoLogoLoView extends AppsterView {
 
     goToPaddingChange = () => {
         this.controller.paddingChange();
+    }
+
+    goToMarginChange = () => {
+        this.controller.marginChange();
     }
     //updates text from modal to logo
     updateText = () => {

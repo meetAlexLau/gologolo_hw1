@@ -90,4 +90,12 @@ export default class GoLogoLoController
         goLogoLoText.style.padding = newPadding + "px";
         this.model.currentWork.setPadding(newPadding);
     }
+    
+    marginChange = () => {
+        var goLogoLoText = document.getElementById("gologolo_text");
+        var newMargin = document.getElementById("gologolo_margin_slider").value;
+        goLogoLoText.style.margin = newMargin + "px";
+        this.model.currentWork.setMargin(newMargin);
+        console.log(newMargin);
+    }
 }
