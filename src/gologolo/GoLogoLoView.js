@@ -65,11 +65,14 @@ export default class GoLogoLoView extends AppsterView {
         textDiv.innerHTML = work.getText();
         let fontSizeSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_FONT_SIZE_SLIDER);
         fontSizeSlider.value = work.getFontSize();
+        fontSizeSlider.min = 1; //smallest font size = 1 and not 0
         fontSizeSlider.oninput = this.goToSizeSliderFunc;
         let textColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_TEXT_COLOR_PICKER);
         textColorPicker.value = work.getTextColor();
+        textColorPicker.onchange = this.goToTextColorChange;
         let backgroundColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BACKGROUND_COLOR_PICKER);
         backgroundColorPicker.value = work.getBackgroundColor();
+        backgroundColorPicker.onchange = this.goToBackgroundColorChange;
         let borderColorPicker = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BORDER_COLOR_PICKER);
         borderColorPicker.value = work.getBorderColor();
         let borderRadiusSlider = document.getElementById(GoLogoLoGUIId.GOLOGOLO_BORDER_RADIUS_SLIDER);
@@ -113,6 +116,14 @@ export default class GoLogoLoView extends AppsterView {
 
     goToSizeSliderFunc = () => {
         this.controller.sizeSliderFunc();
+    }
+
+    goToTextColorChange = () => {
+        this.controller.textColorChange();
+    }
+
+    goToBackgroundColorChange = () => {
+        this.controller.backgroundColorChange();
     }
     //updates text from modal to logo
     updateText = () => {

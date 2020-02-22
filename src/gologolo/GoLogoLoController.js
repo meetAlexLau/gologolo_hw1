@@ -43,9 +43,25 @@ export default class GoLogoLoController
     sizeSliderFunc = () => {
         console.log("beans");
         var goLogoLoText = document.getElementById("gologolo_text");
-        goLogoLoText.style.fontSize = document.getElementById("gologolo_font_size_slider").value + "px";
-        this.model.currentWork.setFontSize(parseInt(document.getElementById("gologolo_font_size_slider").value));
+        var newSize = document.getElementById("gologolo_font_size_slider").value;
+        goLogoLoText.style.fontSize = newSize + "px";
+        this.model.currentWork.setFontSize(parseInt(newSize));
         console.log(document.getElementById("gologolo_font_size_slider").value);
     }
 
+
+    textColorChange = () => {
+        var goLogoLoText = document.getElementById("gologolo_text");
+        var newColor = document.getElementById("gologolo_text_color_picker").value;
+        goLogoLoText.style.color = newColor;
+        this.model.currentWork.setTextColor(newColor);
+        console.log(newColor);
+    }
+
+    backgroundColorChange = () => {
+        var goLogoLoText = document.getElementById("gologolo_text");
+        var newColor = document.getElementById("gologolo_background_color_picker").value;
+        goLogoLoText.style.backgroundColor = newColor;
+        this.model.currentWork.setBackgroundColor(newColor); 
+    }
 }

@@ -137,12 +137,13 @@ export default class AppsterController {
 
         
     }
-    cancelButton() {
+    cancelButton = () => {
         var text = document.getElementById("appster_text_input_modal");
         text.style.opacity = "0.0";
         text.style.visibility = "hidden";
         var text = document.getElementById("appster_text_input_modal_frame");
         text.style.opacity = "0.0";
+        this.model.view.idResetEnterCancel();
     }
 
     nameCheck = () =>{
